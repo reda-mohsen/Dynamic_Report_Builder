@@ -4,19 +4,19 @@
     "ReportName": "All Customers Report",
     "SQL": "select CustomerID, Name_EN, Phone_Number from fbnk_customers;",
     "ReportFields": {
-      "CustomerID": " Customer ID ",
+      "CustomerID": "Customer ID",
       "Name_EN": "Customer Name",
-      "Phone_Number": "Phone Number "
+      "Phone_Number": "Phone Number"
     }
   },
   "Report2": {
     "DB_Connection": "Initial Catalog=MyDB;Integrated security=SSPI",
     "ReportName": "All Customers Report",
-    "SQL": "select CustomerID, Name_EN, Phone_Number from fbnk_customers;",
+    "SQL": "select CustomerID, Name_EN, Address_En from fbnk_customers;",
     "ReportFields": {
-      "CustomerID": " Customer ID ",
+      "CustomerID": "Customer ID",
       "Name_EN": "Customer Name",
-      "Phone_Number": "Phone Number "
+      "Address_En": "Address"
     }
   }
 }
