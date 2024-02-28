@@ -1,0 +1,22 @@
+{
+  "Report1": {
+    "DB_Connection": "Initial Catalog=MyDB;Integrated security=SSPI",
+    "ReportName": "All Customers Report",
+    "SQL": "select CustomerID, Name_EN, Phone_Number from fbnk_customers;",
+    "ReportFields": {
+      "CustomerID": " Customer ID ",
+      "Name_EN": "Customer Name",
+      "Phone_Number": "Phone Number "
+    }
+  },
+  "Report2": {
+    "DB_Connection": "Initial Catalog=MyDB;Integrated security=SSPI",
+    "ReportName": "All Customers Report",
+    "SQL": "select CustomerID, Name_EN, Phone_Number from fbnk_customers;",
+    "ReportFields": {
+      "CustomerID": " Customer ID ",
+      "Name_EN": "Customer Name",
+      "Phone_Number": "Phone Number "
+    }
+  }
+}
