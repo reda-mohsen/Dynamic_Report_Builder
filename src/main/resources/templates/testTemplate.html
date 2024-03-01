@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            padding: 10px;
+            margin: 20px;
+        }
+
+        th, td {
+            padding: 5px;
+            text-align: center;
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th colspan="6" th:text="${testReportName}"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td th:each="displayField : ${testDisplayFields}" th:text="${displayField}"></td>
+    </tr>
+    <tr th:each="customer : ${testList}">
+        <td th:text="${customer.customerID}"></td>
+        <td th:text="${customer.name_En}"></td>
+        <td th:text="${customer.name_AR}"></td>
+        <td th:text="${customer.phone_Number}"></td>
+        <td th:text="${customer.address_EN}"></td>
+        <td th:text="${customer.address_AR}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

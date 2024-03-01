@@ -12,29 +12,49 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Service
 public class TestService {
     private final DatabaseConfiguration databaseConfiguration;
-    private final CustomerRepository customerRepository;
+    private final Report report;
+
     @Autowired
     public TestService(DatabaseConfiguration databaseConfiguration, CustomerRepository customerRepository) {
         this.databaseConfiguration = databaseConfiguration;
-        this.customerRepository = customerRepository;
+        report = databaseConfiguration.getReport();
     }
 
     public List<Customer> getSelectedCustomers() {
         performOperations();
-        return customerRepository.findAll();
+        return null;
     }
 
     private void performOperations() {
-        Report report = databaseConfiguration.getReport();
         DataSource dataSource = databaseConfiguration.dataSource(report);
-        performDatabaseOperations(dataSource, report.getSqlQuery(), report.getReportFields());
+//        performDatabaseOperations(dataSource, report.getSqlQuery(), report.getReportFields());
     }
+
+    public String getReportMap() {
+        return this.report.getReportRoot();
+    }
+
+    public String getReportDisplayName() {
+        return this.report.getReportName();
+    }
+
+    public List<String> getDisplayFields() {
+        List<String> displayFields = new ArrayList<>();
+        List<Map.Entry<String, String>> reportFields = this.report.getReportFields();
+        for (Map.Entry<String, String> entry : reportFields) {
+            displayFields.add(entry.getValue().trim());
+        }
+        return displayFields;
+    }
+
+
     private static void performDatabaseOperations(DataSource dataSource, String sql, List<Map.Entry<String, String>> reportFields) {
         try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(sql);
