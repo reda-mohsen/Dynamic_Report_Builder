@@ -1,25 +1,26 @@
-package com.nbk.report.config;
+package com.nbk.report.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ReportConfiguration {
+public class Report {
     private String reportRoot;
     private String dbConnection;
     private String reportName;
     private String sqlQuery;
     private List<Map.Entry<String, String>> reportFields;
 
-    public ReportConfiguration() {}
+    public Report() {}
 
-    public ReportConfiguration(String reportRoot, String dbConnection,
-                               String reportName, String sqlQuery,
-                               List<Map.Entry<String, String>> reportFields) {
+    public Report(String reportRoot, String dbConnection,
+                  String reportName, String sqlQuery,
+                  List<Map.Entry<String, String>> reportFields) {
         this.reportRoot = reportRoot;
         this.dbConnection = dbConnection;
         this.reportName = reportName;
         this.sqlQuery = sqlQuery;
-        this.reportFields = reportFields;
+        this.reportFields = new ArrayList<>(reportFields);
     }
 
     public String getReportRoot() {
@@ -31,7 +32,12 @@ public class ReportConfiguration {
     }
 
     public String getDbConnection() {
-        return dbConnection;
+        if (dbConnection != null){
+            return dbConnection;
+        }
+        else {
+            return null;
+        }
     }
 
     public void setDbConnection(String dbConnection) {
@@ -55,7 +61,7 @@ public class ReportConfiguration {
     }
 
     public List<Map.Entry<String, String>> getReportFields() {
-        return reportFields;
+        return new ArrayList<>(reportFields);
     }
 
     public void setReportFields(List<Map.Entry<String, String>> reportFields) {

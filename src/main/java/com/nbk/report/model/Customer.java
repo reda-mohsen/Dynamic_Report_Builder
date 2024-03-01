@@ -1,5 +1,5 @@
 
-package com.nbk.report.customer;
+package com.nbk.report.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
