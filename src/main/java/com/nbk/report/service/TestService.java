@@ -28,21 +28,16 @@ public class TestService {
     }
 
     public List<Customer> getSelectedCustomers() {
-        performOperations();
-        return null;
-    }
-
-    private void performOperations() {
         DataSource dataSource = databaseConfiguration.dataSource(report);
-//        performDatabaseOperations(dataSource, report.getSqlQuery(), report.getReportFields());
+        return getListCustomers(dataSource, report.getSqlQuery(), report.getReportFields());
     }
 
     public String getReportMap() {
-        return this.report.getReportRoot();
+        return this.report.getReportRoot().trim();
     }
 
     public String getReportDisplayName() {
-        return this.report.getReportName();
+        return this.report.getReportName().trim();
     }
 
     public List<String> getDisplayFields() {
@@ -53,67 +48,69 @@ public class TestService {
         }
         return displayFields;
     }
+    public List<String> getDisplayColumns() {
+        List<String> displayColumns = new ArrayList<>();
+        List<Map.Entry<String, String>> reportFields = this.report.getReportFields();
+        for (Map.Entry<String, String> entry : reportFields) {
+            displayColumns.add(entry.getKey().trim());
+        }
+        return displayColumns;
+    }
 
 
-    private static void performDatabaseOperations(DataSource dataSource, String sql, List<Map.Entry<String, String>> reportFields) {
+    private static List<Customer> getListCustomers(DataSource dataSource, String sql, List<Map.Entry<String, String>> reportFields) {
+        List<Customer> customers = new ArrayList<>();
         try (Connection connection = dataSource.getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(sql);
                  ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    processResultSetRow(resultSet, reportFields);
+                    customers.add(processResultSetRow(resultSet, reportFields));
                 }
+                return customers;
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            return null;
         }
     }
 
-    private static void processResultSetRow(ResultSet resultSet, List<Map.Entry<String, String>> reportFields) throws SQLException {
-        if (containsField("CustomerID", reportFields)){
-            int id = resultSet.getInt(getFieldKey("CustomerID", reportFields));
-            System.out.println("CustomerID: " + id);
-        }
-        if (containsField("Name_EN", reportFields)){
-            String nameEn = resultSet.getString(getFieldKey("Name_EN", reportFields));
-            System.out.println("Name_EN: " + nameEn);
-        }
-        if (containsField("Phone_Number", reportFields)){
-            String phoneNumber = resultSet.getString(getFieldKey("Phone_Number", reportFields));
-            System.out.println("Phone_Number: " + phoneNumber);
-        }
-        if (containsField("Address_EN", reportFields)){
-            String addressEn = resultSet.getString(getFieldKey("Address_EN", reportFields));
-            System.out.println("Address_EN: " + addressEn);
-        }
-        if (containsField("Name_AR", reportFields)){
-            String nameAr = resultSet.getString(getFieldKey("Name_AR", reportFields));
-            System.out.println("Name_AR: " + nameAr);
-        }
-        if (containsField("Address_AR", reportFields)){
-            String addressAr = resultSet.getString(getFieldKey("Address_AR", reportFields));
-            System.out.println("Address_AR: " + addressAr);
-        }
+    private static Customer processResultSetRow(ResultSet resultSet, List<Map.Entry<String,
+            String>> reportFields) throws SQLException {
+            Customer customer = new Customer();
+
+            if (containsField("CustomerID", reportFields)) {
+                customer.setCustomerID(resultSet.getInt(getFieldKey("CustomerID", reportFields)));
+            }
+            if (containsField("Name_EN", reportFields)) {
+                customer.setName_En(resultSet.getString(getFieldKey("Name_EN", reportFields)));
+            }
+            if (containsField("Phone_Number", reportFields)) {
+                customer.setPhone_Number(resultSet.getString(getFieldKey("Phone_Number", reportFields)));
+            }
+            if (containsField("Address_EN", reportFields)) {
+                customer.setAddress_EN(resultSet.getString(getFieldKey("Address_EN", reportFields)));
+            }
+            if (containsField("Name_AR", reportFields)) {
+                customer.setName_AR(resultSet.getString(getFieldKey("Name_AR", reportFields)));
+            }
+            if (containsField("Address_AR", reportFields)) {
+                customer.setAddress_AR(resultSet.getString(getFieldKey("Address_AR", reportFields)));
+            }
+        return customer;
     }
 
-    public static String getFieldKey(String fieldName, List<Map.Entry<String, String>> reportFields) {
+    private static String getFieldKey(String fieldName, List<Map.Entry<String, String>> reportFields) {
         for (Map.Entry<String, String> entry : reportFields) {
-            if (entry.getKey().equals(fieldName)) {
-                return entry.getKey();
+            if (entry.getKey().trim().equals(fieldName)) {
+                return entry.getKey().trim();
             }
         }
         return null;
     }
-    public static String getFieldValue(String fieldName, List<Map.Entry<String, String>> reportFields) {
+
+    private static boolean containsField(String fieldName, List<Map.Entry<String, String>> reportFields) {
         for (Map.Entry<String, String> entry : reportFields) {
-            if (entry.getKey().equals(fieldName)) {
-                return entry.getValue();
-            }
-        }
-        return null;
-    }
-    public static boolean containsField(String fieldName, List<Map.Entry<String, String>> reportFields) {
-        for (Map.Entry<String, String> entry : reportFields) {
-            if (entry.getKey().equals(fieldName)) {
+            if (entry.getKey().trim().equals(fieldName)) {
                 return true;
             }
         }

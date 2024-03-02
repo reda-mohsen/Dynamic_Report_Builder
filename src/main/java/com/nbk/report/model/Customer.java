@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table
+@Table(name = "fbnk_customers")
 public class Customer {
     @Id
     private Integer CustomerID;
@@ -25,12 +25,12 @@ public class Customer {
     // Default constructor
     public Customer() {
         // Set default values
-        this.CustomerID = 0;
-        this.Name_En = "";
-        this.Name_AR = "";
-        this.Phone_Number = "";
-        this.Address_EN = "";
-        this.Address_AR = "";
+//        this.CustomerID = 0;
+//        this.Name_En = "";
+//        this.Name_AR = "";
+//        this.Phone_Number = "";
+//        this.Address_EN = "";
+//        this.Address_AR = "";
     }
 
     public Customer(Integer customerID, String name_En,

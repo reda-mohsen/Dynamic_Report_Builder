@@ -24,6 +24,7 @@ public class TestController {
             List<Customer> testList = testService.getSelectedCustomers();
             model.addAttribute("testReportName", testService.getReportDisplayName());
             model.addAttribute("testDisplayFields", testService.getDisplayFields());
+            model.addAttribute("testDisplayColumns", testService.getDisplayColumns());
             model.addAttribute("testList", testList);
             return "testTemplate";
         }
