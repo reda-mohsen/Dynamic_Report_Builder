@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 public class ReportConfiguration {
-    private String reportConfigRoot;
-    private String dbConnection;
-    private String reportConfigName;
-    private String sqlQuery;
-    private List<Map.Entry<String, String>> reportFields;
+    private final String reportConfigRoot;
+    private final String dbConnection;
+    private final String reportConfigName;
+    private final String sqlQuery;
+    private final List<Map.Entry<String, String>> reportFields;
 
     public ReportConfiguration(String reportConfigRoot, String dbConnection,
                   String reportConfigName, String sqlQuery,
@@ -25,45 +25,20 @@ public class ReportConfiguration {
         return reportConfigRoot;
     }
 
-    public void setReportConfigRoot(String reportConfigRoot) {
-        this.reportConfigRoot = reportConfigRoot;
-    }
-
     public String getDbConnection() {
-        if (dbConnection != null){
-            return dbConnection;
-        }
-        else {
-            return null;
-        }
-    }
-
-    public void setDbConnection(String dbConnection) {
-        this.dbConnection = dbConnection;
+        return dbConnection;
     }
 
     public String getReportConfigName() {
         return reportConfigName;
     }
 
-    public void setReportConfigName(String reportConfigName) {
-        this.reportConfigName = reportConfigName;
-    }
-
     public String getSqlQuery() {
         return sqlQuery;
     }
 
-    public void setSqlQuery(String sqlQuery) {
-        this.sqlQuery = sqlQuery;
-    }
-
     public List<Map.Entry<String, String>> getReportFields() {
         return new ArrayList<>(reportFields);
-    }
-
-    public void setReportFields(List<Map.Entry<String, String>> reportFields) {
-        this.reportFields = reportFields;
     }
 
     @Override
