@@ -17,4 +17,5 @@ or achieving something new.Dynamic display of a data base query will help very m
    ```bash
    git clone https://github.com/reda-mohsen/Dynamic_Report_Builder.git
    cd Dynamic_Report_Builder
+   mvn clean package
    java -jar target/report-0.0.1-SNAPSHOT.jar
