@@ -1,6 +1,7 @@
 package com.nbk.report.config;
 
 import com.nbk.report.model.Report;
+import com.nbk.report.model.ReportConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,8 +20,8 @@ public class DatabaseConfiguration {
 
     @Bean
     @Primary
-    public DataSource dataSource(Report report) {
-        String dbConnectionProperties = report.getDbConnection();
+    public DataSource dataSource(ReportConfiguration reportConfiguration) {
+        String dbConnectionProperties = reportConfiguration.getDbConnection();
         if (dbConnectionProperties != null && !dbConnectionProperties.isEmpty()) {
             try {
                 String[] parts = dbConnectionProperties.split(";");
@@ -79,7 +80,7 @@ public class DatabaseConfiguration {
     }
 
     @Bean
-    public Report getReport(){
+    public ReportConfiguration getReport(){
         return JsonReader.parseJson("conf.json");
     }
 

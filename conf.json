@@ -2,11 +2,12 @@
   "Report1": {
     "DB_Connection": "url=jdbc:postgresql://localhost:5432/customers;driver=org.postgresql.Driver;username=reda;password=admin",
     "ReportName": "All Customers Report",
-    "SQL": "select CustomerID, Name_EN, Phone_Number from fbnk_customers;",
+    "SQL": "select CustomerID, Name_EN, Phone_Number, Address_EN from fbnk_customers;",
     "ReportFields": {
       "CustomerID": "Customer ID",
       "Name_EN": "Customer Name",
-      "Phone_Number": "Phone Number"
+      "Phone_Number": "Phone Number",
+      "Address_EN": "Address"
     }
   }
 }

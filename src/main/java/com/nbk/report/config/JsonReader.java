@@ -3,6 +3,7 @@ package com.nbk.report.config;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nbk.report.model.Report;
+import com.nbk.report.model.ReportConfiguration;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -16,7 +17,7 @@ import java.util.Iterator;
 @Component
 public class JsonReader {
 
-    public static Report parseJson(String configFilePath) {
+    public static ReportConfiguration parseJson(String configFilePath) {
         try {
             File configFile = new File(configFilePath);
             validateConfigFile(configFile);
@@ -43,7 +44,7 @@ public class JsonReader {
         }
     }
 
-    private static Report buildReportConfiguration(Map.Entry<String, JsonNode> entry) {
+    private static ReportConfiguration buildReportConfiguration(Map.Entry<String, JsonNode> entry) {
         String reportRoot = entry.getKey();
         JsonNode reportNode = entry.getValue();
         String dbConnection = reportNode.get("DB_Connection").asText().strip();
@@ -51,7 +52,7 @@ public class JsonReader {
         String sqlQuery = reportNode.get("SQL").asText().strip();
         List<Map.Entry<String, String>> reportFields = buildReportFields(reportNode.get("ReportFields"));
 
-        return new Report(reportRoot, dbConnection, reportName, sqlQuery, reportFields);
+        return new ReportConfiguration(reportRoot, dbConnection, reportName, sqlQuery, reportFields);
     }
 
     private static List<Map.Entry<String, String>> buildReportFields(JsonNode reportFieldsNode) {

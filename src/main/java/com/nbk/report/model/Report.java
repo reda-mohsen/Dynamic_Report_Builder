@@ -1,26 +1,18 @@
 package com.nbk.report.model;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Report {
     private String reportRoot;
-    private String dbConnection;
     private String reportName;
-    private String sqlQuery;
-    private List<Map.Entry<String, String>> reportFields;
+    List<String> reportDisplayFields;
+    private List<Customer> customers;
 
-    public Report() {}
-
-    public Report(String reportRoot, String dbConnection,
-                  String reportName, String sqlQuery,
-                  List<Map.Entry<String, String>> reportFields) {
+    public Report(String reportRoot, String reportName, List<String> reportDisplayFields, List<Customer> customers) {
         this.reportRoot = reportRoot;
-        this.dbConnection = dbConnection;
         this.reportName = reportName;
-        this.sqlQuery = sqlQuery;
-        this.reportFields = new ArrayList<>(reportFields);
+        this.reportDisplayFields = reportDisplayFields;
+        this.customers = customers;
     }
 
     public String getReportRoot() {
@@ -31,19 +23,6 @@ public class Report {
         this.reportRoot = reportRoot;
     }
 
-    public String getDbConnection() {
-        if (dbConnection != null){
-            return dbConnection;
-        }
-        else {
-            return null;
-        }
-    }
-
-    public void setDbConnection(String dbConnection) {
-        this.dbConnection = dbConnection;
-    }
-
     public String getReportName() {
         return reportName;
     }
@@ -52,30 +31,29 @@ public class Report {
         this.reportName = reportName;
     }
 
-    public String getSqlQuery() {
-        return sqlQuery;
+    public List<String> getReportDisplayFields() {
+        return reportDisplayFields;
     }
 
-    public void setSqlQuery(String sqlQuery) {
-        this.sqlQuery = sqlQuery;
+    public void setReportDisplayFields(List<String> reportDisplayFields) {
+        this.reportDisplayFields = reportDisplayFields;
     }
 
-    public List<Map.Entry<String, String>> getReportFields() {
-        return new ArrayList<>(reportFields);
+    public List<Customer> getCustomers() {
+        return customers;
     }
 
-    public void setReportFields(List<Map.Entry<String, String>> reportFields) {
-        this.reportFields = reportFields;
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 
     @Override
     public String toString() {
-        return "ReportConfiguration{" +
+        return "Report{" +
                 "reportRoot='" + reportRoot + '\'' +
-                ", dbConnection='" + dbConnection + '\'' +
                 ", reportName='" + reportName + '\'' +
-                ", sqlQuery='" + sqlQuery + '\'' +
-                ", reportFields=" + reportFields +
+                ", reportDisplayFields=" + reportDisplayFields +
+                ", customers=" + customers +
                 '}';
     }
 }
