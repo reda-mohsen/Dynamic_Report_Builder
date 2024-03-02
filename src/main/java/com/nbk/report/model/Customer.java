@@ -73,6 +73,30 @@ public class Customer {
         Address_AR = address_AR;
     }
 
+    public Integer getCustomerID() {
+        return CustomerID;
+    }
+
+    public String getName_En() {
+        return Name_En;
+    }
+
+    public String getName_AR() {
+        return Name_AR;
+    }
+
+    public String getPhone_Number() {
+        return Phone_Number;
+    }
+
+    public String getAddress_EN() {
+        return Address_EN;
+    }
+
+    public String getAddress_AR() {
+        return Address_AR;
+    }
+
     // Override the toString method for meaningful string representation
     @Override
     public String toString() {
