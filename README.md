@@ -4,7 +4,7 @@ Dynamic Report Builder Web Application
 ## Overview
 In many business there is requirements to represent data from relational database to visual web page 
 for business user, and this is very systematic process that may consume developer time without learning 
-or achieving something new.Dynamic display of a data base query will help very much on that.
+or achieving something new. Dynamic display of a data base query will help very much on that.
 
 ### Prerequisites
 - JDK 17
