@@ -11,7 +11,7 @@ or achieving something new. Dynamic display of a data base query will help very 
 
 ### Configuration
 - Run local database contains fbnk_customers table
-- Configure the "conf.json" file as you like
+- Configure the "conf.json" file
 
 ### Installation
    ```bash
