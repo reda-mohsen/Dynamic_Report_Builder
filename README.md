@@ -40,6 +40,7 @@ or achieving something new. Dynamic display of a data base query will help very 
 ## Screenshots
 1. 
 ![Input](assets/input.png)
+
 2. 
 ![Output](assets/output.png)
 
