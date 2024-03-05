@@ -9,7 +9,7 @@ import java.util.List;
 
 @Configuration
 public class ReportConfiguration {
-    private String defaultReportMap;
+    private final String defaultReportMap;
 
     public ReportConfiguration(@Value("${map:Report1}") String defaultReportMap) {
         this.defaultReportMap = defaultReportMap;

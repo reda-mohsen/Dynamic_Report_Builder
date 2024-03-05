@@ -26,8 +26,8 @@ public class ReportService {
     private static final Logger logger = LoggerFactory.getLogger(ReportService.class);
 
     // Inject DataSourceConfiguration and ReportConfiguration dependencies through constructor
-    private DataSourceConfiguration dataSourceConfig;
-    private ReportConfiguration reportConfig;
+    private final DataSourceConfiguration dataSourceConfig;
+    private final ReportConfiguration reportConfig;
     @Autowired
     public ReportService(DataSourceConfiguration dataSourceConfig,
                          ReportConfiguration reportConfig) {
