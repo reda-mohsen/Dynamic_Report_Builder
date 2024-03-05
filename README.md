@@ -21,13 +21,17 @@ or achieving something new. Dynamic display of a data base query will help very 
     git clone https://github.com/reda-mohsen/Dynamic_Report_Builder.git
     cd Dynamic_Report_Builder
     ```
+2. Move to project directory:
+    ```bash
+    cd Dynamic_Report_Builder
+    ```
     
-2. Build the application, Open the terminal:
+3. Build the application, Open the terminal:
    ```bash
     mvn clean package
     ```
 
-3. Run the application:
+4. Run the application:
    ```bash
    java -jar target/report-0.0.1-SNAPSHOT.jar
     ```
