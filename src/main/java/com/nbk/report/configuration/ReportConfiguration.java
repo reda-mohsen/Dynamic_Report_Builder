@@ -11,7 +11,7 @@ import java.util.List;
 public class ReportConfiguration {
     private String defaultReportMap;
 
-    public ReportConfiguration(@Value("${map}") String defaultReportMap) {
+    public ReportConfiguration(@Value("${map:Report1}") String defaultReportMap) {
         this.defaultReportMap = defaultReportMap;
     }
     @Bean

@@ -22,7 +22,10 @@ import java.util.Map;
 // Service annotation indicates that this class is a Spring service component
 @Service
 public class ReportService {
+    // Logger for logging messages
     private static final Logger logger = LoggerFactory.getLogger(ReportService.class);
+
+    // Inject DataSourceConfiguration and ReportConfiguration dependencies through constructor
     private DataSourceConfiguration dataSourceConfig;
     private ReportConfiguration reportConfig;
     @Autowired
@@ -34,6 +37,7 @@ public class ReportService {
 
     // Method to get a report based on configured settings
     public Report getReport(String map) {
+        // Get report configuration for the specified map
         ReportConfigModel reportConfiguration = reportConfig.getCurrentReportConfiguration(map.trim());
         // Retrieve report details from ReportConfiguration
         String reportRoot = reportConfiguration.getReportConfigRoot().trim();
@@ -77,8 +81,7 @@ public class ReportService {
                 return customers;
             }
         } catch (SQLException e) {
-            // Handle SQL exceptions and print the stack trace
-            // Log the error instead of printing the stack trace
+            // Handle SQL exceptions and log the error
             logger.error("Error while retrieving customers from the database", e);
             return null;
         }
