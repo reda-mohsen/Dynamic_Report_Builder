@@ -7,7 +7,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
 @Configuration
-public class DataSourceConfig {
+public class DataSourceConfiguration {
     // Properties for database connection
     private String url;
     private String driverClassName;

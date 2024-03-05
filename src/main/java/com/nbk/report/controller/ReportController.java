@@ -22,7 +22,6 @@ public class ReportController {
 
     @GetMapping("/{map}")
     public String getReportTemplate(@PathVariable String map, Model model) {
-        map = map.trim();
         Report report = reportService.getReport(map);
         if (map.equals(report.getReportRoot())){
             model.addAttribute("reportRoot", report.getReportRoot());

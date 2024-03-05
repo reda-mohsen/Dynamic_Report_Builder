@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 @Configuration
-public class ReportConfig {
+public class ReportConfiguration {
     private String defaultReportMap;
 
-    public ReportConfig(@Value("${map}") String defaultReportMap) {
+    public ReportConfiguration(@Value("${map}") String defaultReportMap) {
         this.defaultReportMap = defaultReportMap;
     }
     @Bean

@@ -1,7 +1,7 @@
 package com.nbk.report.service;
 
-import com.nbk.report.configuration.DataSourceConfig;
-import com.nbk.report.configuration.ReportConfig;
+import com.nbk.report.configuration.DataSourceConfiguration;
+import com.nbk.report.configuration.ReportConfiguration;
 import com.nbk.report.model.Customer;
 import com.nbk.report.model.Report;
 import com.nbk.report.model.ReportConfigModel;
@@ -23,18 +23,18 @@ import java.util.Map;
 @Service
 public class ReportService {
     private static final Logger logger = LoggerFactory.getLogger(ReportService.class);
-    private DataSourceConfig dataSourceConfig;
-    private ReportConfig reportConfig;
+    private DataSourceConfiguration dataSourceConfig;
+    private ReportConfiguration reportConfig;
     @Autowired
-    public ReportService(DataSourceConfig dataSourceConfig,
-                         ReportConfig reportConfig) {
+    public ReportService(DataSourceConfiguration dataSourceConfig,
+                         ReportConfiguration reportConfig) {
         this.dataSourceConfig = dataSourceConfig;
         this.reportConfig = reportConfig;
     }
 
     // Method to get a report based on configured settings
     public Report getReport(String map) {
-        ReportConfigModel reportConfiguration = reportConfig.getCurrentReportConfiguration(map);
+        ReportConfigModel reportConfiguration = reportConfig.getCurrentReportConfiguration(map.trim());
         // Retrieve report details from ReportConfiguration
         String reportRoot = reportConfiguration.getReportConfigRoot().trim();
         String reportName = reportConfiguration.getReportConfigName().trim();

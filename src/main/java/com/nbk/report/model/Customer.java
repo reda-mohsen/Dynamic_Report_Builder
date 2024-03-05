@@ -5,19 +5,25 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+// Model class representing a Customer entity
 public class Customer {
+
+    // Fields to store various attributes of the customer
     private Integer CustomerID;
     private String Name_En;
     private String Name_AR;
     private String Phone_Number;
     private String Address_EN;
     private String Address_AR;
+
+    // Default constructor for creating instances without initial values
     public Customer() {}
 
     // Parameterized constructor for creating instances with initial values
     public Customer(Integer customerID, String name_En,
                     String name_AR, String phone_Number,
                     String address_EN, String address_AR) {
+        // Assign values to the fields
         CustomerID = customerID;
         Name_En = name_En;
         Name_AR = name_AR;
@@ -25,6 +31,8 @@ public class Customer {
         Address_EN = address_EN;
         Address_AR = address_AR;
     }
+
+    // Setter methods for updating each field
 
     public void setCustomerID(Integer customerID) {
         CustomerID = customerID;
@@ -49,6 +57,8 @@ public class Customer {
     public void setAddress_AR(String address_AR) {
         Address_AR = address_AR;
     }
+
+    // Getter methods for retrieving the values of each field
 
     public Integer getCustomerID() {
         return CustomerID;
