@@ -19,7 +19,6 @@ or achieving something new. Dynamic display of a data base query will help very 
 1. Clone the repository:
     ```bash
     git clone https://github.com/reda-mohsen/Dynamic_Report_Builder.git
-    cd Dynamic_Report_Builder
     ```
 2. Move to project directory:
     ```bash
