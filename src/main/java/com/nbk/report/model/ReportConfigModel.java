@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ReportConfiguration {
+public class ReportConfigModel {
     private final String reportConfigRoot;
     private final String dbConnection;
     private final String reportConfigName;
     private final String sqlQuery;
     private final List<Map.Entry<String, String>> reportFields;
 
-    public ReportConfiguration(String reportConfigRoot, String dbConnection,
-                  String reportConfigName, String sqlQuery,
-                  List<Map.Entry<String, String>> reportFields) {
+    public ReportConfigModel(String reportConfigRoot, String dbConnection,
+                             String reportConfigName, String sqlQuery,
+                             List<Map.Entry<String, String>> reportFields) {
         this.reportConfigRoot = reportConfigRoot;
         this.dbConnection = dbConnection;
         this.reportConfigName = reportConfigName;

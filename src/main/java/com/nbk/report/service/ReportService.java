@@ -1,9 +1,10 @@
 package com.nbk.report.service;
 
-import com.nbk.report.config.DatabaseConfiguration;
+import com.nbk.report.configuration.DataSourceConfig;
+import com.nbk.report.configuration.ReportConfig;
 import com.nbk.report.model.Customer;
 import com.nbk.report.model.Report;
-import com.nbk.report.model.ReportConfiguration;
+import com.nbk.report.model.ReportConfigModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,36 +23,30 @@ import java.util.Map;
 @Service
 public class ReportService {
     private static final Logger logger = LoggerFactory.getLogger(ReportService.class);
-    // Autowired annotation injects DatabaseConfiguration bean dependency
-    private final DatabaseConfiguration databaseConfiguration;
-
-    // ReportConfiguration instance obtained from DatabaseConfiguration
-    private final ReportConfiguration reportConfiguration;
-
+    private DataSourceConfig dataSourceConfig;
+    private ReportConfig reportConfig;
     @Autowired
-    // Constructor injection of DatabaseConfiguration
-    public ReportService(DatabaseConfiguration databaseConfiguration) {
-        // Initialize the DatabaseConfiguration dependency
-        this.databaseConfiguration = databaseConfiguration;
-
-        // Obtain the ReportConfiguration from DatabaseConfiguration
-        reportConfiguration = databaseConfiguration.getReport();
+    public ReportService(DataSourceConfig dataSourceConfig,
+                         ReportConfig reportConfig) {
+        this.dataSourceConfig = dataSourceConfig;
+        this.reportConfig = reportConfig;
     }
 
     // Method to get a report based on configured settings
-    public Report getReport() {
+    public Report getReport(String map) {
+        ReportConfigModel reportConfiguration = reportConfig.getCurrentReportConfiguration(map);
         // Retrieve report details from ReportConfiguration
         String reportRoot = reportConfiguration.getReportConfigRoot().trim();
         String reportName = reportConfiguration.getReportConfigName().trim();
 
         // Get display fields, customers, and create a Report instance
-        List<String> reportDisplayFields = getDisplayFields();
-        List<Customer> customers = getCustomers();
+        List<String> reportDisplayFields = getDisplayFields(reportConfiguration);
+        List<Customer> customers = getCustomers(reportConfiguration);
         return new Report(reportRoot, reportName, reportDisplayFields, customers);
     }
 
     // Method to get display fields from ReportConfiguration
-    public List<String> getDisplayFields() {
+    public List<String> getDisplayFields(ReportConfigModel reportConfiguration) {
         List<String> displayFields = new ArrayList<>();
         List<Map.Entry<String, String>> reportFields = reportConfiguration.getReportFields();
 
@@ -63,9 +58,9 @@ public class ReportService {
     }
 
     // Method to get customers based on configured SQL query and report fields
-    public List<Customer> getCustomers() {
+    public List<Customer> getCustomers(ReportConfigModel reportConfiguration) {
         // Obtain DataSource from DatabaseConfiguration
-        DataSource dataSource = databaseConfiguration.dataSource(reportConfiguration);
+        DataSource dataSource = dataSourceConfig.createDataSource(reportConfiguration);
         return getListCustomers(dataSource, reportConfiguration.getSqlQuery(), reportConfiguration.getReportFields());
     }
 

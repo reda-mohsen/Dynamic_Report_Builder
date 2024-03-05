@@ -5,36 +5,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-// Entity annotation indicates that this class is a JPA entity
-@Entity
-// Table annotation specifies the name of the database table for this entity
-@Table(name = "fbnk_customers")
 public class Customer {
-    // Id annotation marks the primary key field
-    @Id
     private Integer CustomerID;
-
-    // Column annotation specifies the mapping to the database column
-    @Column(name = "name_en")
     private String Name_En;
-
-    // Column annotation for the Arabic name
-    @Column(name = "name_ar")
     private String Name_AR;
-
-    // Column annotation for the phone number
-    @Column(name = "phone_number")
     private String Phone_Number;
-
-    // Column annotation for the English address
-    @Column(name = "address_en")
     private String Address_EN;
-
-    // Column annotation for the Arabic address
-    @Column(name = "address_ar")
     private String Address_AR;
-
-    // Default constructor required by JPA
     public Customer() {}
 
     // Parameterized constructor for creating instances with initial values
