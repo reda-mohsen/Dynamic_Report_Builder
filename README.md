@@ -13,6 +13,7 @@ or achieving something new. Dynamic display of a data base query will help very 
 ### Configuration
 - Run local database
 - Configure the input configuration file
+- Configure application.properties
 
 ### Installation and How to Run
 1. Clone the repository:
@@ -27,12 +28,10 @@ or achieving something new. Dynamic display of a data base query will help very 
     ```bash
     notepad src/main/resources/application.properties
     ```
-    
 4. Build the application:
    ```bash
     mvn clean package
     ```
-
 4. Run the application:
    ```bash
    java -jar target/report-0.0.1-SNAPSHOT.jar
