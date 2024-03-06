@@ -10,13 +10,16 @@ import java.util.List;
 @Configuration
 public class ReportConfiguration {
     private final String defaultReportMap;
+    private final String confFilePath;
 
-    public ReportConfiguration(@Value("${map:Report1}") String defaultReportMap) {
+    public ReportConfiguration(@Value("${map:Report1}") String defaultReportMap,
+                               @Value("${conf:conf.json}")String confFilePath) {
         this.defaultReportMap = defaultReportMap;
+        this.confFilePath = confFilePath;
     }
     @Bean
     public ReportConfigModel getCurrentReportConfiguration(String map){
-        List<ReportConfigModel> reportConfigurations = JsonReader.parseJson("conf.json");
+        List<ReportConfigModel> reportConfigurations = JsonReader.parseJson(confFilePath);
         for(ReportConfigModel reportConfiguration: reportConfigurations){
             if (reportConfiguration.getReportConfigRoot().equals(map.trim())){
                 return reportConfiguration;
