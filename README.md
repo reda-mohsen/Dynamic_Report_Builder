@@ -38,12 +38,12 @@ or achieving something new. Dynamic display of a data base query will help very 
 ## Usage
 
 ## Screenshots
-1. 
+1. Input configuration file:
 ![Input](assets/input_file.png)
 
-2. 
+2. Output of report 1:
 ![Output](assets/output_report_1.png)
 
-3.
+3. Output of report 2:
 ![Output](assets/output_report_2.png)
 
