@@ -14,7 +14,6 @@ or achieving something new. Dynamic display of a data base query will help very 
 ### Configuration
 - Run local database
 - Configure the input configuration file
-- Configure application.properties
 
 ### Installation and How to Run
 1. Clone the repository:
