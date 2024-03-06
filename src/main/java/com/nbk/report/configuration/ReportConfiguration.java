@@ -15,7 +15,7 @@ public class ReportConfiguration {
         this.defaultReportMap = defaultReportMap;
     }
     @Bean
-    public ReportConfigModel getCurrentReportConfiguration(@Value("${map}") String map){
+    public ReportConfigModel getCurrentReportConfiguration(String map){
         List<ReportConfigModel> reportConfigurations = JsonReader.parseJson("conf.json");
         for(ReportConfigModel reportConfiguration: reportConfigurations){
             if (reportConfiguration.getReportConfigRoot().equals(map.trim())){

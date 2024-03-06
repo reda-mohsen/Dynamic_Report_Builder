@@ -3,8 +3,6 @@ package com.nbk.report.controller;
 import com.nbk.report.model.Report;
 import com.nbk.report.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping
 public class ReportController {
-    private ReportService reportService;
+    private final ReportService reportService;
     @Autowired
     public ReportController(ReportService reportService) {
         this.reportService = reportService;
