@@ -10,7 +10,7 @@ or achieving something new. Dynamic display of a data base query will help very 
 - [Git](https://git-scm.com/downloads)
 - [JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 - [Apache Maven](https://maven.apache.org/download.cgi?.)
-- 
+
 ### Configuration
 - Run local database
 - Configure the input configuration file
