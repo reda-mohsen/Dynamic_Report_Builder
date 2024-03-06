@@ -6,16 +6,16 @@ In many business there is requirements to represent data from relational databas
 for business user, and this is very systematic process that may consume developer time without learning 
 or achieving something new. Dynamic display of a data base query will help very much on that.
 
-## Features
-
 ### Prerequisites
+- Git
 - JDK 17
+- Apache Maven
 
 ### Configuration
-- Run local database contains fbnk_customers table
-- Configure the "conf.json" file
+- Run local database
+- Configure the input configuration file
 
-### Installation
+### Installation and How to Run
 1. Clone the repository:
     ```bash
     git clone https://github.com/reda-mohsen/Dynamic_Report_Builder.git
@@ -24,8 +24,12 @@ or achieving something new. Dynamic display of a data base query will help very 
     ```bash
     cd Dynamic_Report_Builder
     ```
+3. Edit application properties to specify configuration file and report number:
+    ```bash
+    notepad src/main/resources/application.properties
+    ```
     
-3. Build the application, Open the terminal:
+4. Build the application:
    ```bash
     mvn clean package
     ```
@@ -34,8 +38,6 @@ or achieving something new. Dynamic display of a data base query will help very 
    ```bash
    java -jar target/report-0.0.1-SNAPSHOT.jar
     ```
-
-## Usage
 
 ## Screenshots
 1. Input configuration file:
