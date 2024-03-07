@@ -24,7 +24,7 @@ or achieving something new. Dynamic display of a data base query will help very 
     ```bash
     cd Dynamic_Report_Builder
     ```
-3. Edit application properties to specify configuration file and report number:
+3. Edit application properties to specify configuration file path: (default: "conf.json")
     ```bash
     notepad src/main/resources/application.properties
     ```
