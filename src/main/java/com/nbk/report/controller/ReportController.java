@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class ReportController {
@@ -20,10 +19,16 @@ public class ReportController {
     @GetMapping("/{map}")
     public String getReportTemplate(@PathVariable String map, Model model) {
         Report report = reportService.getReport(map);
-        model.addAttribute("reportRoot", report.getReportRoot());
-        model.addAttribute("reportName", report.getReportName());
-        model.addAttribute("reportDisplayFields", report.getReportDisplayFields());
-        model.addAttribute("customers", report.getCustomers());
-        return "reportTemplate";
+        if (report != null){
+            model.addAttribute("reportRoot", report.getReportRoot());
+            model.addAttribute("reportName", report.getReportName());
+            model.addAttribute("reportDisplayFields", report.getReportDisplayFields());
+            model.addAttribute("customers", report.getCustomers());
+            return "reportTemplate";
+        }
+        else {
+            return "errorTemplate";
+        }
+
         }
 }
