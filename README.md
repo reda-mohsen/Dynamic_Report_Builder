@@ -39,7 +39,7 @@ or achieving something new. Dynamic display of a data base query will help very 
 
 ## Screenshots
 Input configuration file:
-![Input](assets/input_file.png)
+![Input](assets/input_config_file.png)
 
 Output of report 1:
 ![Output](assets/output_report_1.png)
