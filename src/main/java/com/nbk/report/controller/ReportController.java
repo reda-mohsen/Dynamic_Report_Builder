@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping
 public class ReportController {
     private final ReportService reportService;
     @Autowired
@@ -21,16 +20,10 @@ public class ReportController {
     @GetMapping("/{map}")
     public String getReportTemplate(@PathVariable String map, Model model) {
         Report report = reportService.getReport(map);
-        if (map.equals(report.getReportRoot())){
-            model.addAttribute("reportRoot", report.getReportRoot());
-            model.addAttribute("reportName", report.getReportName());
-            model.addAttribute("reportDisplayFields", report.getReportDisplayFields());
-            model.addAttribute("customers", report.getCustomers());
-            return "reportTemplate";
+        model.addAttribute("reportRoot", report.getReportRoot());
+        model.addAttribute("reportName", report.getReportName());
+        model.addAttribute("reportDisplayFields", report.getReportDisplayFields());
+        model.addAttribute("customers", report.getCustomers());
+        return "reportTemplate";
         }
-        else{
-            return "errorTemplate";
-        }
-
-    }
 }

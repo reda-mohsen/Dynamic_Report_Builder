@@ -9,18 +9,16 @@ public class ReportConfigModel {
 
     // Fields to store various attributes of the report configuration
     private final String reportConfigRoot;
-    private final String dbConnection;
     private final String reportConfigName;
     private final String sqlQuery;
     private final List<Map.Entry<String, String>> reportFields;
 
     // Constructor to initialize the ReportConfigModel with provided values
-    public ReportConfigModel(String reportConfigRoot, String dbConnection,
-                             String reportConfigName, String sqlQuery,
-                             List<Map.Entry<String, String>> reportFields) {
+    public ReportConfigModel(String reportConfigRoot,
+                           String reportConfigName, String sqlQuery,
+                           List<Map.Entry<String, String>> reportFields) {
         // Assign values to the fields
         this.reportConfigRoot = reportConfigRoot;
-        this.dbConnection = dbConnection;
         this.reportConfigName = reportConfigName;
         this.sqlQuery = sqlQuery;
         // Create a new ArrayList to store a copy of the provided reportFields
@@ -30,11 +28,6 @@ public class ReportConfigModel {
     // Getter method for retrieving the report configuration root
     public String getReportConfigRoot() {
         return reportConfigRoot;
-    }
-
-    // Getter method for retrieving the database connection information
-    public String getDbConnection() {
-        return dbConnection;
     }
 
     // Getter method for retrieving the report configuration name
@@ -56,9 +49,8 @@ public class ReportConfigModel {
     // Override toString method to provide a string representation of the object
     @Override
     public String toString() {
-        return "ReportConfiguration{" +
+        return "TestReport{" +
                 "reportRoot='" + reportConfigRoot + '\'' +
-                ", dbConnection='" + dbConnection + '\'' +
                 ", reportName='" + reportConfigName + '\'' +
                 ", sqlQuery='" + sqlQuery + '\'' +
                 ", reportFields=" + reportFields +

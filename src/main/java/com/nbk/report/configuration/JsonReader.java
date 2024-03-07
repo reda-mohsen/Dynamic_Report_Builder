@@ -11,8 +11,14 @@ import java.util.*;
 
 @Component
 public class JsonReader {
-
-    // Method to parse a JSON configuration file and return a list of ReportConfigModel objects
+    static String dbConnection;
+    public static String getDbConnection() {
+        return dbConnection;
+    }
+    public static void setDbConnection(String dbConnection) {
+        JsonReader.dbConnection = dbConnection;
+    }
+    // Method to parse a JSON configuration file and return a list of TestReportModel objects
     public static List<ReportConfigModel> parseJson(String configFilePath) {
         try {
             // Create a File object from the provided file path
@@ -27,21 +33,30 @@ public class JsonReader {
             // Read the JSON content into a JsonNode
             JsonNode rootNode = objectMapper.readTree(configFile);
 
-            // Create a list to store ReportConfigModel objects
+            // Retrieve the DB connection information
+            setDbConnection(rootNode.get("Reports").get("DB_Connection").asText().trim());
+
+            // Create a list to store TestReportModel objects
             List<ReportConfigModel> reports = new ArrayList<>();
 
-            // Iterate through the fields of the root JSON object
-            Iterator<Map.Entry<String, JsonNode>> nodesIterator = rootNode.fields();
-            while (nodesIterator.hasNext()) {
-                // Get the key-value pair of the current field
-                Map.Entry<String, JsonNode> entry = nodesIterator.next();
+            // Iterate through the "Reports" field of the root JSON object
+            JsonNode reportsNode = rootNode.get("Reports");
+            Iterator<Map.Entry<String, JsonNode>> reportsIterator = reportsNode.fields();
+            while (reportsIterator.hasNext()) {
+                // Get the key-value pair of the current report
+                Map.Entry<String, JsonNode> reportEntry = reportsIterator.next();
 
-                // Build a ReportConfigModel from the JSON field and add it to the list
-                ReportConfigModel report = buildReportConfiguration(entry);
+                // Skip the "DB_Connection" entry
+                if (reportEntry.getKey().equals("DB_Connection")) {
+                    continue;
+                }
+
+                // Build a TestReportModel from the JSON report entry and add it to the list
+                ReportConfigModel report = buildReportConfiguration(reportEntry);
                 reports.add(report);
             }
 
-            // Return the list of ReportConfigModel objects
+            // Return the list of TestReportModel objects
             return reports;
         } catch (IOException e) {
             // Handle IOException by printing the stack trace and returning null
@@ -57,18 +72,17 @@ public class JsonReader {
         }
     }
 
-    // Method to build a ReportConfigModel from a JSON field entry
-    private static ReportConfigModel buildReportConfiguration(Map.Entry<String, JsonNode> entry) {
-        // Extract information from the JSON field entry
-        String reportRoot = entry.getKey();
-        JsonNode reportNode = entry.getValue();
-        String dbConnection = reportNode.get("DB_Connection").asText().strip();
+    // Method to build a TestReportModel from a JSON report entry
+    private static ReportConfigModel buildReportConfiguration(Map.Entry<String, JsonNode> reportEntry) {
+        // Extract information from the JSON report entry
+        String reportRoot = reportEntry.getKey();
+        JsonNode reportNode = reportEntry.getValue();
         String reportName = reportNode.get("ReportName").asText().strip();
         String sqlQuery = reportNode.get("SQL").asText().strip();
         List<Map.Entry<String, String>> reportFields = buildReportFields(reportNode.get("ReportFields"));
 
-        // Create and return a new ReportConfigModel
-        return new ReportConfigModel(reportRoot, dbConnection, reportName, sqlQuery, reportFields);
+        // Create and return a new TestReportModel
+        return new ReportConfigModel(reportRoot, reportName, sqlQuery, reportFields);
     }
 
     // Method to build a list of report fields from a JSON node

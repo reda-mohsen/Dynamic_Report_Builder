@@ -1,6 +1,7 @@
 {
+  "Reports": {
+    "DB_Connection": "url=jdbc:postgresql://localhost:5432/customers;driver=org.postgresql.Driver;username=reda;password=admin",
     "Report1": {
-      "DB_Connection": "url=jdbc:postgresql://localhost:5432/customers;driver=org.postgresql.Driver;username=reda;password=admin",
       "ReportName": "All Customers Report 1",
       "SQL": "select CustomerID, Name_EN, Phone_Number, Address_EN from fbnk_customers;",
       "ReportFields": {
@@ -11,7 +12,6 @@
       }
     },
     "Report2": {
-      "DB_Connection": "url=jdbc:postgresql://localhost:5432/customers;driver=org.postgresql.Driver;username=reda;password=admin",
       "ReportName": "All Customers Report 2",
       "SQL": "select CustomerID, Name_EN, Phone_Number from fbnk_customers;",
       "ReportFields": {
@@ -21,3 +21,4 @@
       }
     }
   }
+}

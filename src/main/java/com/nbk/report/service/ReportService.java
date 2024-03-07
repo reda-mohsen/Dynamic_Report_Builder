@@ -64,7 +64,7 @@ public class ReportService {
     // Method to get customers based on configured SQL query and report fields
     public List<Customer> getCustomers(ReportConfigModel reportConfiguration) {
         // Obtain DataSource from DatabaseConfiguration
-        DataSource dataSource = dataSourceConfig.createDataSource(reportConfiguration);
+        DataSource dataSource = dataSourceConfig.createDataSource();
         return getListCustomers(dataSource, reportConfiguration.getSqlQuery(), reportConfiguration.getReportFields());
     }
 

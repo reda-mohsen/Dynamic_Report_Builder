@@ -1,23 +1,24 @@
 package com.nbk.report.configuration;
 
-import com.nbk.report.model.ReportConfigModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
 @Configuration
+@DependsOn("getListOfReports") // To make sure the configuration file is parsed first
 public class DataSourceConfiguration {
+    // Get the database connection properties from JsonReader
+    private final String dbConnectionProperties = JsonReader.getDbConnection();
+
     // Properties for database connection
     private String url;
     private String driverClassName;
     private String username;
     private String password;
     @Bean
-    public DataSource createDataSource(ReportConfigModel reportConfiguration) {
-        // Get the database connection properties from ReportConfiguration
-        String dbConnectionProperties = reportConfiguration.getDbConnection();
-
+    public DataSource createDataSource() {
         // Check if the properties are not null and not empty
         if (dbConnectionProperties != null && !dbConnectionProperties.isEmpty()) {
             try {
