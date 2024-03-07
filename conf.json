@@ -1,6 +1,6 @@
 {
   "Reports": {
-    "DB_Connection": "url=jdbc:postgresql://localhost:5432/customers;driver=org.postgresql.Driver;username=reda;password=admin",
+    "DB_Connection": "url=jdbc:mysql://localhost:3306/customers;driver=com.mysql.cj.jdbc.Driver;username=reda;password=admin",
     "Report1": {
       "ReportName": "All Customers Report 1",
       "SQL": "select CustomerID, Name_EN, Phone_Number, Address_EN from fbnk_customers;",
@@ -18,6 +18,24 @@
         "CustomerID": "Customer ID",
         "Name_EN": "Customer Name",
         "Phone_Number": "Phone Number"
+      }
+    },
+    "Report3": {
+      "ReportName": "All Customers Report 3",
+      "SQL": "select CustomerID, Name_EN, Address_AR from fbnk_customers;",
+      "ReportFields": {
+        "CustomerID": "Customer ID",
+        "Name_EN": "Customer Name",
+        "Address_AR": "Address (Arabic)"
+      }
+    },
+    "Report4": {
+      "ReportName": "All Customers Report 4",
+      "SQL": "select CustomerID, Name_AR, Address_AR from fbnk_customers;",
+      "ReportFields": {
+        "CustomerID": "Customer ID",
+        "Name_AR": "Customer Name (Arabic)",
+        "Address_AR": "Address (Arabic)"
       }
     }
   }
