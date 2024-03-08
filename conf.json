@@ -37,6 +37,18 @@
         "Name_AR": "Customer Name (Arabic)",
         "Address_AR": "Address (Arabic)"
       }
+    },
+    "Report5": {
+      "ReportName": "All Customers Report 5",
+      "SQL": "select * from fbnk_customers;",
+      "ReportFields": {
+        "CustomerID": "Customer ID",
+        "Name_EN": "Customer Name",
+        "Name_AR": "Customer Name (Arabic)",
+        "Phone_Number": "Phone Number",
+        "Address_EN": "Address",
+        "Address_AR": "Address (Arabic)"
+      }
     }
   }
 }
