@@ -42,14 +42,17 @@ Input configuration file:
 ![Input](assets/input_config_file.png)
 
 Output of report 1:
-![Output](assets/output_report_1.png)
+![Output](assets/output_Report1.png)
 
 Output of report 2:
-![Output](assets/output_report_2.png)
+![Output](assets/output_Report2.png)
 
 Output of report 3:
-![Output](assets/output_report_3.png)
+![Output](assets/output_Report3.png)
 
 Output of report 4:
-![Output](assets/output_report_4.png)
+![Output](assets/output_Report4.png)
+
+Output of report 5:
+![Output](assets/output_Report5.png)
 
